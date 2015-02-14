@@ -23,10 +23,6 @@
 #include <linux/mfd/pm8xxx/core.h>
 #include <linux/input/pmic8xxx-pwrkey.h>
 
-#ifdef CONFIG_TOUCH_WAKE
-#include <linux/touch_wake.h>
-#endif
-
 #define PON_CNTL_1 0x1C
 #define PON_CNTL_PULL_UP BIT(7)
 #define PON_CNTL_TRIG_DELAY_MASK (0x7)
@@ -197,7 +193,14 @@ static int __devinit pmic8xxx_pwrkey_probe(struct platform_device *pdev)
 		input_report_key(pwrkey->pwr, KEY_POWER, 1);
 		input_sync(pwrkey->pwr);
 	}
-
+#ifdef CONFIG_TOUCHSCREEN_PREVENT_SLEEP
+#ifdef CONFIG_TOUCHSCREEN_SWEEP2WAKE
+	pr_info("[wake_up_display]: set device %s\n", pwr->name);
+#else
+        power_on_display_dt2w(pwr);
+	pr_info("[wake_up_display]: set device %s\n", pwr->name);
+#endif
+#endif
 	err = request_any_context_irq(key_press_irq, pwrkey_press_irq,
 		IRQF_TRIGGER_RISING, "pmic8xxx_pwrkey_press", pwrkey);
 	if (err < 0) {
@@ -216,11 +219,6 @@ static int __devinit pmic8xxx_pwrkey_probe(struct platform_device *pdev)
 	}
 
 	device_init_wakeup(&pdev->dev, pdata->wakeup);
-
-#ifdef CONFIG_TOUCH_WAKE
-	pr_info("powerkey device set\n");
-	set_powerkeydev(pwr);
-#endif
 
 	return 0;
 
@@ -275,3 +273,4 @@ MODULE_ALIAS("platform:pmic8xxx_pwrkey");
 MODULE_DESCRIPTION("PMIC8XXX Power Key driver");
 MODULE_LICENSE("GPL v2");
 MODULE_AUTHOR("Trilok Soni <tsoni@codeaurora.org>");
+

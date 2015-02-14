@@ -28,10 +28,6 @@
 #include <linux/rcupdate.h>
 #include "input-compat.h"
 
-#ifdef CONFIG_TOUCH_WAKE
-#include <linux/touch_wake.h>
-#endif
-
 MODULE_AUTHOR("Vojtech Pavlik <vojtech@suse.cz>");
 MODULE_DESCRIPTION("Input core");
 MODULE_LICENSE("GPL");
@@ -284,15 +280,7 @@ static int input_get_disposition(struct input_dev *dev,
 	case EV_KEY:
 		if (is_event_supported(code, dev->keybit, KEY_MAX) &&
 		    !!test_bit(code, dev->key) != value) {
-#ifdef CONFIG_TOUCH_WAKE
-			if (code == KEY_POWER && touchwake_is_enabled() &&
-						!device_is_suspended()) {
-				if (value == 1)
-					powerkey_pressed();
-				else if (value == 0)
-          				powerkey_released();
-        		}
-#endif
+
 			if (value != 2) {
 				__change_bit(code, dev->key);
 				if (value)
@@ -2267,3 +2255,4 @@ static void __exit input_exit(void)
 
 subsys_initcall(input_init);
 module_exit(input_exit);
+
