@@ -15,7 +15,7 @@ DEFCONFIG="gee_defconfig"
 
 # Kernel Details
 BASE_AK_VER="Hells-Core"
-VER="-b69-L-gee"
+VER="-b70-L-gee"
 AK_VER="$BASE_AK_VER$VER"
 
 # AK Variables
@@ -31,8 +31,8 @@ KERNEL_DIR=`pwd`
 REPACK_DIR="${HOME}/kernel/GEE-AnyKernel"
 PATCH_DIR="${HOME}/kernel/GEE-AnyKernel/patch"
 MODULES_DIR="${HOME}/kernel/GEE-AnyKernel/patch/modules"
-ZIP_MOVE="${HOME}/kernel/HC/HC-releases/"
-ZIMAGE_DIR="${HOME}/kernel/HC/HC-GEE/arch/arm/boot"
+ZIP_MOVE="${HOME}/kernel/HC-releases/"
+ZIMAGE_DIR="${HOME}/kernel/GEE/arch/arm/boot"
 
 # Functions
 function clean_all {
