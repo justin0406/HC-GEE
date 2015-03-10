@@ -15,12 +15,12 @@ DEFCONFIG="gee_defconfig"
 
 # Kernel Details
 BASE_AK_VER="Hells-Core"
-VER="-b70-L-gee"
+VER="-b70-UTC-L-gee"
 AK_VER="$BASE_AK_VER$VER"
 
 # AK Variables
 export LOCALVERSION=~`echo $AK_VER`
-export CROSS_COMPILE=${HOME}/kernel/boosted-arm-cortex_a15-linux-gnueabihf-4.9/bin/arm-cortex_a15-linux-gnueabihf-
+export CROSS_COMPILE=${HOME}/kernel/arm-eabi-4.9/bin/arm-eabi-
 export ARCH=arm
 export SUBARCH=arm
 export KBUILD_BUILD_USER=Justin
