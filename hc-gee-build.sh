@@ -15,7 +15,7 @@ DEFCONFIG="gee_defconfig"
 
 # Kernel Details
 BASE_AK_VER="Hells-Core"
-VER="-b70-UTC-L-gee"
+VER="-b71-L-gee"
 AK_VER="$BASE_AK_VER$VER"
 
 # AK Variables
