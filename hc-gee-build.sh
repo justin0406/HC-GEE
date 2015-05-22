@@ -15,12 +15,12 @@ DEFCONFIG="gee_defconfig"
 
 # Kernel Details
 BASE_AK_VER="Hells-Core"
-VER="-b75-L-gee"
+VER="-b77-L-gee"
 AK_VER="$BASE_AK_VER$VER"
 
 # AK Variables
 export LOCALVERSION=~`echo $AK_VER`
-export CROSS_COMPILE=${HOME}/TOOLCHAIN/UBERTC-arm-eabi-4.9/bin/arm-eabi-
+export CROSS_COMPILE=${HOME}/TOOLCHAIN/UBERTC-arm-eabi-5.1/bin/arm-eabi-
 export ARCH=arm
 export SUBARCH=arm
 export KBUILD_BUILD_USER=Justin
